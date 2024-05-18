@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AJAX PHP Example</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1>Click here to show client_id and client_secret from database</h1>
+    <button type="submit">Submit</button>
+    <div id="result"></div>
+
+    <script>
+        $(document).ready(function() {
+            $('#numberForm').on('submit', function(event) {
+                event.preventDefault();
+                var number = $('#number').val();
+
+                $.ajax({
+                    type: 'POST',
+                    url: 'process.php',
+                    data: { number: number },
+                    dataType: 'json',
+                    success: function(response) {
+                        if (response.error) {
+                            $('#result').html('<p>' + response.error + '</p>');
+                        } else {
+                            $('#result').html('<p>The square of ' + number + ' is ' + response.result + '</p>');
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
