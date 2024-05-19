@@ -7,26 +7,25 @@
 </head>
 <body>
     <h1>Click here to show client_id and client_secret from database</h1>
-    <button type="submit">Submit</button>
-    <div id="result"></div>
+    <button id="button">Get data</button>
 
     <script>
         $(document).ready(function() {
-            $('#numberForm').on('submit', function(event) {
-                event.preventDefault();
-                var number = $('#number').val();
-
+            $('#button').on('click', function() {
                 $.ajax({
-                    type: 'POST',
-                    url: 'process.php',
-                    data: { number: number },
+                    type: 'GET',
+                    url: 'dbquery.php',
+                    data: {action: 'getClientData'},
                     dataType: 'json',
                     success: function(response) {
-                        if (response.error) {
-                            $('#result').html('<p>' + response.error + '</p>');
-                        } else {
-                            $('#result').html('<p>The square of ' + number + ' is ' + response.result + '</p>');
-                        }
+                        console.log('GET request successful')
+                        response.forEach(function(row) {
+                            console.log(`client_id = ${row.client_id}, client_secret = ${row.client_secret}`);
+                        });
+                        
+                    },
+                    error: function() {
+                        console.log('GET request failed');
                     }
                 });
             });
