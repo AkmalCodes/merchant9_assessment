@@ -1,9 +1,3 @@
-<?php
-
-
-?>
-
-
 <!DOCTYPE html>
 <html>
 <script src="" async defer></script>
@@ -71,8 +65,9 @@
                 <td>1,318.93</td>
                 <td>Lorem Ipsum</td>
             </tr>
-            <tr>
-                <td id="btn-row" colspan = "10">
+            <tr id="btn-row">
+                <td colspan="9"></td>
+                <td >
                     <button id="btn-combine-shipment">Combine Shipment</button>
                 </td>
             </tr>
@@ -110,7 +105,6 @@
 
     th {
         text-align: center;
-        padding: 10px;
         background-color: #666699;
         border: 1px solid black;
     }
@@ -124,10 +118,6 @@
     #discount td:first-child,
     #grand-total td:first-child
     {
-        text-align: right;
-    }
-
-    #btn-row{
         text-align: right;
     }
 
@@ -145,5 +135,10 @@
         text-align: center;
         padding: 10px;
         border: 1px solid black;
+    }
+
+    #btn-row td{
+        text-align: center !important;
+        border: none !important;
     }
 </style>
